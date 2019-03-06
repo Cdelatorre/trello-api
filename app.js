@@ -25,10 +25,6 @@ app.use(session);
 app.use('/columns', columnRoutes);
 app.use('/cards', cardsRoutes);
 
-app.use((req, res, next) => {
-  res.locals.session = req.user;
-  next();
-})
 
 // 404
 app.use(function(req, res, next) {
