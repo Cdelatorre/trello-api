@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
-
 const columnSchema = new mongoose.Schema({
-
   position: {
     type: Number,
   },

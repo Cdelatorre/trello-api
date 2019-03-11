@@ -10,8 +10,10 @@ module.exports.card = (req, res, next) => {
 }
 
 module.exports.doCard = (req, res, next) => {
-
   const card = new Card(req.body);
+  if(req.file){
+    card.imageUrl = req.file.secure_url
+  }
     return card
       .save()
       .then(card =>

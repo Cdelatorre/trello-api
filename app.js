@@ -10,16 +10,18 @@ const columnRoutes = require('./routes/columns.routes');
 const cardsRoutes = require('./routes/cards.routes');
 
 require('./configs/db.config');
-
+const cors = require('./configs/cors.config') //session nunca antes que cors, MUY IMPORTANTE!
 const session = require('./configs/session.config');
 
 const app = express();
 
+
+//Esto acepta origines de todos los lados, asi que hay que cambiarlo
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(cors)
 app.use(session);
 
 app.use('/columns', columnRoutes);
