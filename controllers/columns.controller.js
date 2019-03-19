@@ -61,11 +61,12 @@ module.exports.update = (req, res, next) => {
 
 module.exports.delete = (req, res, next) => {
   Column.findByIdAndRemove(req.params.id)
+    .populate('cards')
     .then(column => {
       if (!column) {
         next(createError(404, 'column not found'));
       } else {
-        res.status(200).json();
+        res.status(200).json(column);
       }
     })
     .catch(error => next(error));

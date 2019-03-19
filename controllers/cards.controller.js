@@ -53,6 +53,20 @@ module.exports.update = (req, res, next) => {
   .catch(error => next(error));
 }
 
+module.exports.deleteAll = (req, res, next) => {
+  Card.find()
+    .remove()
+    .then(card => {
+      if (!card) {
+        next(createError(404, 'Card not found'));
+      } else {
+        res.status(200).json(card);
+      }
+    })
+    .catch(error => next(error));
+}
+
+
 module.exports.delete = (req, res, next) => {
   Card.findByIdAndRemove(req.params.id)
     .then(card => {
